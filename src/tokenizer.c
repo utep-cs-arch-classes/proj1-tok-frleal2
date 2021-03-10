@@ -105,6 +105,8 @@ char** tokenize(char* sentence){
       
     }
     
+    tokens[i][word_leng] = '0';
+    
     index = ((int) word_end(sentence) +1);
   
   }
