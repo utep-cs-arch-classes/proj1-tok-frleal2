@@ -1,14 +1,18 @@
+
 #include "tokenizer.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-char *copy_str(char *src, short len){
-  char *ptr = (char *)malloc(sizeof(char) * (len + 1));
-  for(int i = 0; i < len && src[i] != '\0'; i++){
-    ptr[i] = src[i];
+char *copy_str(char *str, short length){
+  char *tokens = (char *)malloc(sizeof(char) * (length + 1));
+  
+  int i = 0;
+  while(i < length && str[i] != '\0'){
+    tokens[i] = str[i];
+    i++;
   }
-  ptr[len] = '\0';
-  return ptr;
+  tokens[length] = '\0';
+  return tokens;
 }
 
 /*Evaluates weather a character is valid*/
@@ -88,17 +92,17 @@ char** tokenize(char* sentence){
   
   for(short i=0;i<words_num;i++){ //we will calculate length of each string and allocate memory for each
     
-    char *start = word_start(sentence);
+    char *start = word_start(sentence); //pointer at the beginning of a word.
     
-    char *end = word_end(sentence);
+    char *end = word_end(sentence);  //pointer at the end of a word.
     
-    int word_leng = (int)(end - start) + 1;
+    int word_leng = (int)(end - start) + 1; //This computes the lenght of each word.
     
-    tokens[i] = copy_str(start, word_leng);
+    tokens[i] = copy_str(start, word_leng); //allocates the memory for all the words and copies each word into a token.
     
-    sentence = word_start(end);
+    sentence = word_start(end);  //Makes the sentence start at the beggining of the next word.
     
-    tokens[i][word_leng] = '0';
+    //tokens[i][word_leng] = '\0';
     
   }
   tokens[words_num] = '\0';
