@@ -25,7 +25,7 @@ int space_char(char c){
 
 /*Evaluates weather a character is invalid*/
 int non_space_char(char c){
-  if(c != '\t && c != ' ' && c != '\n'){
+  if(c != '\t' && c != ' ' && c != '\n'){
      return 1;
   }
   else{
