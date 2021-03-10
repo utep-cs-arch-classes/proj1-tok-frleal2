@@ -37,7 +37,7 @@ int non_space_char(char c){
 
 char *word_start(char *str){
   while(space_char(*str) == 1){
-    str++
+    str++;
   }  
   return str;
 }
@@ -84,7 +84,6 @@ void free_tokens(char** tokens){
 char** tokenize(char* sentence){
   short words_num = count_words(sentence);
   short word_leng =0;
-  int index = 0;
   char** tokens = (char**) malloc((words_num+1)*sizeof(char*));//we allocate memory for the number of pointers needed
   
   for(short i=0;i<words_num;i++){ //we will calculate length of each string and allocate memory for each
@@ -97,18 +96,17 @@ char** tokenize(char* sentence){
     
     tokens[i] =(char *) malloc((word_leng + 1)*sizeof(char));//we allocate one extra for the NULL character
     
-    index = (int) word_start(sentence);
+    char *word =  word_start(sentence);
     
-    for(short j = 0;j<word_leng;j++){
+    for(short j = 0;j < word_leng; j++){
       
-      tokens[i][j] = sentence[index+j];
+      tokens[i][j] = word[j];
       
     }
-    
-    index = ((int) word_end(sentence) +1);
-  
+
+    tokens[i][word_leng] = '\0';
+    sentence += word_leng;
   }
-  tokens[words_num] = (char*) malloc(sizeof(char));
   tokens[words_num] = '\0';
   return tokens;
 }
