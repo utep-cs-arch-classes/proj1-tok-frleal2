@@ -94,15 +94,9 @@ char** tokenize(char* sentence){
     
     int word_leng = (int)(end - start) + 1;
     
-    tokens[i] =(char *) malloc((word_leng + 1)*sizeof(char));//we allocate one extra for the NULL character
+    tokens[i] = copy_str(start, word_leng);
     
-    char *word =  word_start(sentence);
-    
-    for(short j = 0;j < word_leng; j++){
-      
-      tokens[i][j] = word[j];
-      
-    }
+    char *word =  word_start(end);
 
     sentence += word_leng;
     tokens[i][word_leng] = '0';
