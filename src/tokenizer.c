@@ -96,9 +96,8 @@ char** tokenize(char* sentence){
     
     tokens[i] = copy_str(start, word_leng);
     
-    char *word =  word_start(end);
-
-    sentence += word_leng;
+    sentence = word_start(end);
+    
     tokens[i][word_leng] = '0';
     
   }
